@@ -103,11 +103,11 @@ resource "aws_alb_listener" "service_http" {
 }
 
 ## OUTPUTS ##
-output "alb_arns" {
-  description = "Map of ALB ARNs with predictable keys"
+output "listener_arns" {
+  description = "Map of the listener arns"
   value = {
-    for idx, alb in aws_alb.alb :
-    idx => alb.arn
+    for idx, listener_arn in aws_alb_listener.service_https :
+    idx => listener_arn.arn
   }
 }
 
